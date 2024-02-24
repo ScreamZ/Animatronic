@@ -1,4 +1,4 @@
-import type {ReadonlyDeep} from 'type-fest';
+import type { ReadonlyDeep } from 'type-fest';
 import type ClockTimer from '@gamestdio/timer';
 
 type Clock = ClockTimer.default;
@@ -17,100 +17,100 @@ type Clock = ClockTimer.default;
  * @see https://spicyyoghurt.com/tools/easing-functions#easinglist
  */
 export type EasingFunction = (
-	timePassed: number,
-	startValue: number,
-	deltaValue: number,
-	duration: number
+  timePassed: number,
+  startValue: number,
+  deltaValue: number,
+  duration: number,
 ) => number;
 
 export type AnimationSegment = {
-	/**
+  /**
    * Value to move to from previous segment (or initial value if first segment)
    */
-	toValue: number;
-	/**
+  toValue: number;
+  /**
    * Static or dynamic duration of the segment. Allows to add randomness or dynamic duration to the animation.
    */
-	duration: number | (() => number);
-	/**
+  duration: number | (() => number);
+  /**
    * Easing function to use for the segment. If not provided, the default easing function will be used which is linear.
    */
-	easing?: EasingFunction;
+  easing?: EasingFunction;
 };
 
 /**
  * Animation segments with initial value for the first segment.
  */
 export type SegmentsConfig = [
-	AnimationSegment & {initialValue: number},
-	...AnimationSegment[],
+  AnimationSegment & { initialValue: number },
+  ...AnimationSegment[],
 ];
 
 export type AnimationControllerConfig = {
-	/**
+  /**
    * Whether the animation should loop back to the first segment when it reaches the end.
    */
-	loop?: boolean;
-	/**
+  loop?: boolean;
+  /**
    * Segments to animate through. First segment should have an initial value.
    * If dynamic segments are needed, use the `start` method to provide new segments. This will override the segments from the config.
    */
-	segments: SegmentsConfig;
-	/**
+  segments: SegmentsConfig;
+  /**
    * Frames per second for the animation. Defaults to 60.
    */
-	fps?: number;
+  fps?: number;
 
-	/**
+  /**
    * TODO: dynamic fps
    * Static or dynamic fps. Allows to add randomness or adjust fps dynamically.
    * Re-evaluated on each frame.
    */
-	// fps?: number | (() => number);
+  // fps?: number | (() => number);
 
-	/**
+  /**
    * This allows to cancel animation externally and synchronize with simulation interval.
    *
    * @see An instance of `ClockTimer` from `@gamestdio/timer` package. Or a compliant API.
    */
-	clock?: Clock | Readonly<Clock> | ReadonlyDeep<Clock>;
+  clock?: Clock | Readonly<Clock> | ReadonlyDeep<Clock>;
 };
 
 export type AnimationHooks = {
-	/**
+  /**
    * Called when the animation starts after calling `start` method.
    */
-	onStart?(): void;
-	/**
+  onStart?(): void;
+  /**
    * Called when the animation stops after calling `stop` method.
    */
-	onStop?(): void;
-	/**
+  onStop?(): void;
+  /**
    * Called when the animation end in case of an animation without `loop` set to true.
    */
-	onEnd?(): void;
-	/**
+  onEnd?(): void;
+  /**
    * Whenever the animation loops back to the first segment. If `loop` is true only.
    */
-	onLoop?(): void;
+  onLoop?(): void;
 };
 
 export type AnimationController = {
-	/**
+  /**
    * Start the animation.
    */
-	start: (
-	/**
+  start: (
+    /**
      * Callback to be called on each frame of the animation.
      */
-		onFrame: (value: number) => void,
-	/**
+    onFrame: (value: number) => void,
+    /**
      * Optional new segments to use for the animation. Will override the segments from the config.
      */
-		withNewSegments?: SegmentsConfig
-	) => void;
-	/**
+    withNewSegments?: SegmentsConfig,
+  ) => void;
+  /**
    * Stop the animation.
    */
-	stop: () => void;
+  stop: () => void;
 };

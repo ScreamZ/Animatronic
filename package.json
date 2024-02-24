@@ -8,7 +8,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsup",
-    "test": "ava"
+    "test": "ava",
+    "lint": "eslint src/**"
   },
   "keywords": [],
   "author": "Andréas HANSS",
@@ -18,10 +19,14 @@
   },
   "devDependencies": {
     "@gamestdio/timer": "^1.4.1",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
     "ava": "^6.1.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.2.5",
     "tsup": "^8.0.2",
-    "typescript": "^5.3.3",
-    "xo": "^0.57.0"
+    "typescript": "^5.3.3"
   },
   "ava": {
     "extensions": {
@@ -31,12 +36,5 @@
       "--import=tsx/esm"
     ],
     "workerThreads": false
-  },
-  "xo": {
-    "rules": {
-      "no-mixed-spaces-and-tabs": "off",
-      "no-mixed-operators": "off",
-      "no-return-assign": "off"
-    }
   }
 }
