@@ -27,11 +27,7 @@ JSDocumentation is well defined and pretty self explanatory, but here is a quick
 ```ts
 // For the sake of simplicity we have assume we have function `setPWMTo` that sets the PWM of a device between 0 and 255.
 
-import {
-  createAnimationController,
-  Easing,
-  type SegmentsConfig,
-} from "animatronic";
+import { createAnimationController, Easing, type SegmentsConfig } from "animatronic";
 
 // Generate segments that take a full trip from 0 to 255 and back to 0 in 10 seconds.
 const simplePulseSegments: SegmentsConfig = [
@@ -47,6 +43,9 @@ const controller = createAnimationController({
 });
 
 state.lightMode.onChange((lightMode) => {
+  // Cancel eventual previous animation
+  controller.stop();
+
   switch (lightMode) {
     case "on":
       setPWMTo(255);
@@ -55,7 +54,6 @@ state.lightMode.onChange((lightMode) => {
       controller.start(setPWMTo);
       break;
     default:
-      controller.stop();
       setPWMTo(0);
       break;
   }
