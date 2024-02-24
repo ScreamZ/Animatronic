@@ -1,0 +1,42 @@
+{
+  "name": "animatronic",
+  "version": "1.0.0",
+  "description": "Node.js library to animate values with ease for various animations.",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "test": "ava"
+  },
+  "keywords": [],
+  "author": "Andréas HANSS",
+  "license": "ISC",
+  "dependencies": {
+    "type-fest": "^4.10.3"
+  },
+  "devDependencies": {
+    "@gamestdio/timer": "^1.4.1",
+    "ava": "^6.1.1",
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3",
+    "xo": "^0.57.0"
+  },
+  "ava": {
+    "extensions": {
+      "ts": "module"
+    },
+    "nodeArguments": [
+      "--import=tsx/esm"
+    ],
+    "workerThreads": false
+  },
+  "xo": {
+    "rules": {
+      "no-mixed-spaces-and-tabs": "off",
+      "no-mixed-operators": "off",
+      "no-return-assign": "off"
+    }
+  }
+}
