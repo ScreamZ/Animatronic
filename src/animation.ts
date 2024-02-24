@@ -1,5 +1,5 @@
 import type { AnimationController, AnimationControllerConfig, AnimationHooks } from "./types.js";
-import { Easing } from "./easing.js";
+import { linear } from "./easing.js";
 import { createClockingMechanism, restrictNumber } from "./utils.js";
 
 /**
@@ -29,7 +29,7 @@ export const createAnimationController = (
 			return;
 		}
 
-		const { toValue, duration, easing = Easing.linear } = segments[currentSegmentIndex];
+		const { toValue, duration, easing = linear } = segments[currentSegmentIndex];
 
 		const segmentDuration = typeof duration === "function" ? duration() : duration;
 
