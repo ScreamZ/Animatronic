@@ -1,0 +1,9 @@
+.changeset/
+.husky/
+test/
+node_modules/
+.DS_Store
+.vscode/
+src/
+tsup.config.ts
+tsconfig.json

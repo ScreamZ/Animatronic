@@ -1,19 +1,17 @@
 {
   "name": "animatronic",
-  "version": "1.0.0",
-  "description": "Node.js library to animate values with ease for various animations.",
+  "version": "1.0.1",
+  "description": "NodeJS, Bun and Deno library to animate numeric values with ease.",
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsup",
+    "prepublish": "tsup",
     "test": "ava",
     "prepare": "husky"
   },
-  "keywords": [],
-  "author": "Andréas HANSS",
-  "license": "MIT",
   "dependencies": {
     "type-fest": "^4.10.3"
   },
@@ -51,5 +49,19 @@
     "bracketSpacing": true,
     "singleQuote": false,
     "printWidth": 110
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ScreamZ/Animatronic"
+  },
+  "keywords": [
+    "animation",
+    "NodeJS",
+    "Bun",
+    "Deno",
+    "DMX",
+    "PWM"
+  ],
+  "author": "Andréas HANSS",
+  "license": "MIT"
 }
