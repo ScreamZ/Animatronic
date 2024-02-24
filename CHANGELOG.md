@@ -1,5 +1,11 @@
 # animatronic
 
+## 1.1.0
+
+### Minor Changes
+
+- 4e0cd19: Change Easing function export for better three-shaking
+
 ## 1.0.2
 
 ### Patch Changes
