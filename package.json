@@ -1,6 +1,6 @@
 {
   "name": "animatronic",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "NodeJS, Bun and Deno library to animate numeric values with ease.",
   "type": "module",
   "main": "dist/index.cjs",
