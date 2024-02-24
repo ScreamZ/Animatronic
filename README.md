@@ -1,7 +1,7 @@
 <h1 align="center">
   Animatronic
 </h1>
-<p align="center" style="border-radius: 5px;">
+<p align="center">
     <img src="assets/logo.png" alt="Logo Aurora" width="300">
 </p>
 <h4 align="center">A library to animate numeric values with ease on NodeJS, Bun and Deno.</h4>

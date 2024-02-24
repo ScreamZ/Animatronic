@@ -1,10 +1,6 @@
-import type {
-	AnimationController,
-	AnimationControllerConfig,
-	AnimationHooks,
-} from './types.js';
-import {Easing} from './easing.js';
-import {createClockingMechanism, restrictNumber} from './utils.js';
+import type { AnimationController, AnimationControllerConfig, AnimationHooks } from "./types.js";
+import { Easing } from "./easing.js";
+import { createClockingMechanism, restrictNumber } from "./utils.js";
 
 /**
  * Build an animation controller to animate values over time.
@@ -13,38 +9,34 @@ export const createAnimationController = (
 	config: AnimationControllerConfig,
 	hooks: AnimationHooks = {},
 ): AnimationController => {
-	const {loop = false, fps = 60} = config;
+	const { loop = false, fps = 60 } = config;
 	const frameDuration = 1000 / fps;
-	const {setInterval, clearInterval} = createClockingMechanism(config.clock);
+	const { setInterval, clearInterval } = createClockingMechanism(config.clock);
 	let isAnimationActive = false;
 
 	/** Callback to call for each frame, can be override */
-	let _onFrame: Parameters<AnimationController['start']>[0];
+	let _onFrame: Parameters<AnimationController["start"]>[0];
 	let segments = config.segments; // Default to config segments, can be override
 	let currentSegmentIndex = 0;
 	let currentAnimatedValue = segments[0].initialValue;
 
 	/**
-   * Start animation loop for a new segment, and reset segment specific values
-   */
+	 * Start animation loop for a new segment, and reset segment specific values
+	 */
 	const animateSegment = () => {
 		// Abort if animation is stopped
 		if (!isAnimationActive) {
 			return;
 		}
 
-		const {
-			toValue,
-			duration,
-			easing = Easing.linear,
-		} = segments[currentSegmentIndex];
+		const { toValue, duration, easing = Easing.linear } = segments[currentSegmentIndex];
 
-		const segmentDuration
-      = typeof duration === 'function' ? duration() : duration;
-		const beginningValue
-      = currentSegmentIndex > 0
-      	? segments[currentSegmentIndex - 1].toValue // Use previous segment value as beginning value
-      	: segments[0].initialValue; // Or use initial value for first segment
+		const segmentDuration = typeof duration === "function" ? duration() : duration;
+
+		const beginningValue =
+			currentSegmentIndex > 0
+				? segments[currentSegmentIndex - 1].toValue // Use previous segment value as beginning value
+				: segments[0].initialValue; // Or use initial value for first segment
 
 		let currentTimeWithinSegment = 0;
 
@@ -55,12 +47,7 @@ export const createAnimationController = (
 
 			// Update value
 			currentAnimatedValue = restrictNumber(
-				easing(
-					currentTimeWithinSegment,
-					beginningValue,
-					toValue - beginningValue,
-					segmentDuration,
-				),
+				easing(currentTimeWithinSegment, beginningValue, toValue - beginningValue, segmentDuration),
 				beginningValue,
 				toValue,
 			);
@@ -95,8 +82,8 @@ export const createAnimationController = (
 	};
 
 	/**
-   * Reset and stop the animation and any running interval
-   */
+	 * Reset and stop the animation and any running interval
+	 */
 	const resetAndStop = () => {
 		clearInterval();
 		currentSegmentIndex = 0;

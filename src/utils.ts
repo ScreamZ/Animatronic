@@ -1,14 +1,10 @@
-import type {Delayed} from '@gamestdio/timer';
-import {type AnimationControllerConfig} from './types.js';
+import type { Delayed } from "@gamestdio/timer";
+import { type AnimationControllerConfig } from "./types.js";
 
 /**
  * Restrict a number between two boundaries
  */
-export function restrictNumber(
-	v: number,
-	border1: number,
-	border2: number,
-): number {
+export function restrictNumber(v: number, border1: number, border2: number): number {
 	const min = Math.min(border1, border2);
 	const max = Math.max(border1, border2);
 	return Math.min(Math.max(v, min), max);
@@ -23,9 +19,7 @@ type ClockMechanism = {
 /**
  * A wrapper that will return sync clock or fallback to default interval mechanism.
  */
-export function createClockingMechanism(
-	clock?: AnimationControllerConfig['clock'],
-): ClockMechanism {
+export function createClockingMechanism(clock?: AnimationControllerConfig["clock"]): ClockMechanism {
 	if (clock) {
 		let delayed: Delayed | undefined;
 
