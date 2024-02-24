@@ -1,5 +1,11 @@
 # animatronic
 
+## 1.1.1
+
+### Patch Changes
+
+- Export all types from the library for better usage.
+
 ## 1.1.0
 
 ### Minor Changes
