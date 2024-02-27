@@ -1,5 +1,11 @@
 # animatronic
 
+## 1.2.0
+
+### Minor Changes
+
+- Fix import for ESM
+
 ## 1.1.1
 
 ### Patch Changes
