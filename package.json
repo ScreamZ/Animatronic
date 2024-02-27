@@ -4,8 +4,17 @@
   "description": "NodeJS, Bun and Deno library to animate numeric values with ease.",
   "type": "module",
   "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "exports": {
+    "require": {
+      "types": "./dist/index.d.cts",
+      "default": "./dist/index.cjs"
+    },
+    "import": {
+      "types": "./dist/index.js",
+      "default": "./dist/index.d.ts"
+    },
+    "default": "./dist/index.js"
+  },
   "scripts": {
     "build": "tsup",
     "prepublish": "tsup",
